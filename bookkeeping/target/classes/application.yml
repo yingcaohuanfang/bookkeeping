@@ -10,33 +10,25 @@ spring:
       max-file-size: 20MB
       max-request-size: 20MB
 
-
-
-
-
-
 ip: 192.168.1.212
 
 server:
   port: 9999
 
-# JWT ??
 jwt:
   secret: abc1234567890
-  expire: 7200  # ???????
+  expire: 7200
 
-# MyBatis-Plus ??
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  type-handlers-package: com.baomidou.mybatisplus.extension.handlers  # ?????
+  type-handlers-package: com.baomidou.mybatisplus.extension.handlers
   global-config:
     db-config:
-      table-prefix:  # ?????????
+      table-prefix:
 
-# ????
 logging:
   level:
-    com.wyc.secondhandbooks.mapper: debug  # ?????Mapper???
+    com.wyc.secondhandbooks.mapper: debug
     com.baomidou.mybatisplus: debug

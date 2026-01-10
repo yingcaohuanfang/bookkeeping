@@ -17,6 +17,8 @@ public class RegisterDTO {
     @Size(min = 6, max = 20, message = "密码长度必须在6-20之间")
     private String password;
 
+    private int role;
+
     public @NotBlank(message = "用户名不能为空") @Size(min = 3, max = 20, message = "用户名长度必须在3-20之间") String getUsername() {
         return username;
     }

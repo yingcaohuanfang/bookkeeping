@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须是Mapper接口的全类名（检查是否拼写错误） -->
+<mapper namespace="com.wyc.bookkeeping.mapper.UserMapper">
+
+
+    <select id="selectLists" resultType="com.wyc.bookkeeping.entity.User">
+        SELECT
+            userid as userId,
+            username,
+            nickname,
+            avatar,
+            role,
+            createTime as createTime
+        FROM user
+    </select>
+    <select id="selectByIds" resultType="com.wyc.bookkeeping.entity.Bills">
+        SELECT *
+        FROM bills
+        ORDER BY bills.createTime DESC
+            LIMIT 3;
+    </select>
+</mapper>

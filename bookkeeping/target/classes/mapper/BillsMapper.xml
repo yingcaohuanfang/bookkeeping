@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须是Mapper接口的全类名（检查是否拼写错误） -->
+<mapper namespace="com.wyc.bookkeeping.mapper.BillsMapper">
+
+    <insert id="saveBills">
+        insert into bills(amount, incomeexpenditure, createTime, updatedTime, typeid, invoices, userid, remark, status)
+        values (#{amount}, #{incomeexpenditure}, #{createTime}, #{updatedTime}, #{typeid}, #{invoices}, #{userId},
+                #{remark}, #{status})
+    </insert>
+    <select id="index" resultType="map">
+        SELECT COALESCE(SUM(CASE
+                                WHEN Incomeexpenditure = '收入' THEN CAST(amount AS DECIMAL)
+                                WHEN Incomeexpenditure = '支出' THEN -CAST(amount AS DECIMAL) END), 0)   AS total_assets,
+               COALESCE(SUM(CASE WHEN DATE (createTime) = CURRENT_DATE AND Incomeexpenditure = '收入'
+                            THEN CAST(amount AS DECIMAL) END),
+                        0)                                                                               AS today_income,
+               COALESCE(SUM(CASE WHEN DATE (createTime) = CURRENT_DATE AND Incomeexpenditure = '支出'
+                            THEN CAST(amount AS DECIMAL) END),
+                        0)                                                                               AS today_expense,
+               COALESCE(SUM(CASE
+                                WHEN DATE_FORMAT(createTime, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+                                    AND Incomeexpenditure = '收入' THEN CAST(amount AS DECIMAL) END),
+                        0)                                                                               AS monthly_income,
+               COALESCE(SUM(CASE
+                                WHEN DATE_FORMAT(createTime, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+                                    AND Incomeexpenditure = '支出' THEN CAST(amount AS DECIMAL) END),
+                        0)                                                                               AS monthly_expense
+        FROM bills
+
+    </select>
+    <select id="monthBills" resultType="map">
+        SELECT DATE_FORMAT(createTime, '%Y-%m') AS month,
+    SUM(IF(Incomeexpenditure='收入', CAST(amount AS DECIMAL(10,2)), 0)) AS income,
+    SUM(IF(Incomeexpenditure='支出', CAST(amount AS DECIMAL(10,2)), 0)) AS expense,
+    SUM(IF(Incomeexpenditure='收入', CAST(amount AS DECIMAL(10,2)), -CAST(amount AS DECIMAL(10,2)))) AS balance
+        FROM bills
+        GROUP BY month
+        ORDER BY month DESC;
+
+    </select>
+    <!-- BillsMapper.xml -->
+    <select id="selectByIds" resultType="com.wyc.bookkeeping.entity.Bills">
+        SELECT * FROM bills
+
+    </select>
+
+
+</mapper>

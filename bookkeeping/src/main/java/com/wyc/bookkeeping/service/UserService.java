@@ -6,6 +6,8 @@ import com.wyc.bookkeeping.entity.DTO.LoginResponseDTO;
 import com.wyc.bookkeeping.entity.DTO.RegisterDTO;
 import com.wyc.bookkeeping.entity.User;
 
+import java.util.List;
+
 /**
  * @author 王亚川
  */
@@ -17,4 +19,12 @@ public interface UserService extends IService<User> {
     void updatePassword(String oldPassword, String newPassword);
 
 
+    void updateNickname(String nicknameDTO);
+
+
+    List<User> getUserInfoAll();
+
+    Object getBills(Long id);
+
+    Object getBillsThree(Long id);
 }

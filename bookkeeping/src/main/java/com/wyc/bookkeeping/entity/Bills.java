@@ -38,6 +38,8 @@ public class Bills {
     @TableField("userid")
     private Long userId;
 
+    private String Dismissed;
+
     private String remark; // 备注
 
     private Integer status; // 账单状态：0-待审核，1-审核通过，2-已驳回（默认0）

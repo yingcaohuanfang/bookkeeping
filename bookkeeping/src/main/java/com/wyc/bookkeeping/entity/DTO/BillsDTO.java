@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 /**
  * @author 王亚川
  */
@@ -26,16 +25,13 @@ public class BillsDTO {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private String createTime; // 日期（创建时间）
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime updatedTime; // 更新时间（可为空，默认当前时间）
+
 
     @NotNull(message = "账单种类ID不能为空")
     private Long typeid; // 种类ID
 
     private String invoices; // 发票（可选，如发票号码或URL）
 
-    @NotNull(message = "人员ID不能为空")
-    private Long userId;
 
     @Size(max = 255, message = "备注不能超过255字符")
     private String remark; // 备注（可选）
