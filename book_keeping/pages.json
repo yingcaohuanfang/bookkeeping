@@ -1,0 +1,61 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "custom"
+			}
+		},
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "custom"
+			}
+		},
+		{
+			"path": "pages/user/personal-center",
+			"style": {
+				"navigationBarTitleText": "custom"
+			}
+		},
+		{
+			"path": "pages/billDetails/billdetails",
+			"style": {
+				"navigationBarTitleText": "custom"
+			}
+		},
+		{
+			"path": "pages/addbill/addbill",
+			"style": {
+				"navigationBarTitleText": "custom"
+			}
+		}
+	],
+	"tabBar": {
+		"selectedColor": "#74FFBA",
+		"backgroundColor": "#FFFFFF",
+		"height": "102rpx",
+		"iconWidth": "68rpx",
+		"list": [
+			{
+				"pagePath": "pages/home/home",
+				"iconPath": "/static/image/home.svg",
+				"selectedIconPath": "/static/image/select-home.svg"
+			},
+			{
+				"pagePath": "pages/user/personal-center",
+				"iconPath": "/static/image/user.svg",
+				"selectedIconPath": "/static/image/select-user.svg"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		// 隐藏头部
+		"navigationStyle": "custom"
+	},
+	"uniIdRouter": {}
+}
